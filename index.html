@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Firebase Auth Testing</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="alert">
+      <h1 id="alertHTML">Placeholder</h1>
+    </div>
+    <div class="auth">
+      <form id="register">
+        <h2>Register</h2>
+        <input type="email" id="registerEmail" placeholder="Email" required />
+        <input
+          type="password"
+          id="registerPassword"
+          placeholder="Password"
+          required
+        />
+        <input
+          type="password"
+          id="confirmPassword"
+          placeholder="Confirm your password"
+          required
+        />
+        <input type="submit" />
+      </form>
+      <form id="login">
+        <h2>Login</h2>
+        <input type="email" id="loginEmail" placeholder="Enter your email" />
+        <input
+          type="password"
+          id="loginPassword"
+          placeholder="Enter your password"
+        />
+        <input type="submit" />
+        <h3>Cant Sign In?</h3>
+        <a href="/reset.html" id="resetPasswordBtn">Reset Password</a>
+      </form>
+    </div>
+
+    <div class="content">
+      <h1>Welcome</h1>
+
+      <button id="verify">⚡Send Email Verifcation</button>
+
+      <button id="SignOut">Sign out</button>
+
+      <h2 id="contentAlertHTML">Placeholder</h2>
+      <h2>Customize your Profile Picture</h2>
+      <img src="" alt="Profile Picture" id="profilePicture">
+      <input type="file" name="file" id="fileUploader" accept=".jpg"/>
+      <button type="submit" id="fileSubmit">Upload</button>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
+    <script type="module" src="db.js"></script>
+    <script type="module" src="/index.js"></script>
+  </body>
+</html>

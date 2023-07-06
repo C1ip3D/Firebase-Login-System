@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Ysabeau+SC:wght@300&display=swap');
+
+body {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  text-align: center;
+  font-family: 'Share Tech Mono', sans-serif;
+  background-color: antiquewhite;
+}
+
+h1 {
+	margin: 40px;
+	font-size: 3rem;
+}
+
+#resetForm {
+  position: absolute;
+  top: 40%;
+  left: 41%;
+  display: grid;
+  background-color: bisque;
+  padding: 30px;
+}
+
+input[type='email'] {
+  padding: 10px;
+  font-size: 1.3rem;
+  margin: 20px;
+  font-family: 'Ysabeau SC', sans-serif;
+}
+
+input[type='submit'] {
+  padding: 12px;
+  font-size: 1.2rem;
+  font-family: 'Ysabeau SC', sans-serif;
+}
+
+#goback {
+  font-size: 60px;
+  color: black;
+}
