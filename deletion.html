@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Ysabeau+SC:wght@300&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body
+    style="
+      display: grid;
+      text-align: center;
+      background-color: antiquewhite;
+      font-family: 'Share Tech Mono', sans-serif;
+    "
+  >
+    <h1>😥We are sad that we are seeing you leave😥</h1>
+    <h2>Please help us understand by taking this short survey</h2>
+    <div class="alert">
+      <h2 style="background-color: lightgreen"></h2>
+    </div>
+    <form
+      id="feedback"
+      style="
+        background-color: beige;
+        padding: 5%;
+        width: 50%;
+        justify-self: center;
+        border-radius: 20px;
+        box-shadow: 2px 2px 10px black;
+        display: grid;
+        gap: 10px;
+      "
+    >
+      <input
+        type="email"
+        id="email"
+        placeholder="Enter your email"
+        style="
+          width: 50%;
+          font-family: 'Ysabeau SC, sans-serif';
+          justify-self: center;
+          padding: 10px;
+          border-radius: 10px;
+        "
+      />
+      <h3 id="formQuestion">
+        Provide a reason of why you are requesting account deletion
+      </h3>
+      <input
+        type="text"
+        id="reasonInput"
+        style="
+          width: 50%;
+          font-family: 'Ysabeau SC, sans-serif';
+          justify-self: center;
+          padding: 10px;
+          border-radius: 10px;
+        "
+        placeholder="Enter a reason why"
+      />
+      <h3 id="formQuestion">What can we do to fix that</h3>
+      <input
+        type="text"
+        id="fixInput"
+        placeholder="Enter a way to fix our mistakes"
+        style="
+          width: 50%;
+          font-family: 'Ysabeau SC, sans-serif';
+          justify-self: center;
+          padding: 10px;
+          border-radius: 10px;
+        "
+      />
+      <input
+        type="submit"
+        style="
+          width: 50%;
+          justify-self: center;
+          margin: 20px;
+          margin-bottom: 0;
+          padding: 10px;
+          background-color: white;
+          border-radius: 10px;
+          font-family: 'Ysabeau SC, sans-serif';
+          font-size: 20px;
+        "
+      />
+    </form>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
+    <script type="module" src="/js/db.js"></script>
+    <script type="module" src="js/deletion.js"></script>
+  </body>
+</html>

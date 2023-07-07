@@ -7,7 +7,7 @@ form.addEventListener('submit', resetPassword)
 function resetPassword(e){
     e.preventDefault()
     let email = document.getElementById('resetEmail').value
-    auth.sendPasswordResetEmail(email)
+    firebase.auth().sendPasswordResetEmail(email)
     .then(()=>{
 		alert('Email sent')
 		

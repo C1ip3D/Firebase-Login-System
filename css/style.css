@@ -92,6 +92,7 @@ a {
   transition: 0.5s linear;
   filter: blur(5px);
   transform: translateX(-300%);
+  display: none;
 }
 
 #contentAlertHTML.animate {
@@ -99,19 +100,23 @@ a {
   transform: translateX(0);
 }
 
-input[type='file'] {
-  font-size: 20px;
-  padding: 20px;
-  position: relative;
-  left: 80px;
-  font-family: 'Share Tech Mono', sans-serif;
+#fileUploader {
+display: none;
+}
+
+#fileLabel {
+  font-size: 1.5rem;
+  margin: 20px;
+  text-decoration: underline;
+  justify-self: center;
 }
 
 .content img {
   border-radius: 50%;
-  width: 100px;
-  height: 100px;
-  margin-left: 190px;
+  width: 150px;
+  height: 150px;
+  justify-self: center;
+  transition: 0.8s linear;
 }
 
 .content h2 {

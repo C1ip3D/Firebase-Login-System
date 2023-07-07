@@ -1,5 +1,8 @@
 import { auth, storage } from './db.js';
 
+auth.useDeviceLanguage();
+
+//Variables
 let authContainer = document.getElementsByClassName('auth')[0];
 let content = document.getElementsByClassName('content')[0];
 let registerForm = document.getElementById('register');
@@ -10,6 +13,7 @@ let alertHTML = document.getElementById('alertHTML');
 let alert = document.getElementsByClassName('alert')[0];
 let contentAlertHTML = document.getElementById('contentAlertHTML');
 let pfpBTN = document.getElementById('fileSubmit');
+let deletiona = document.getElementById('deletiona');
 alert.style.width = authContainer.style.width;
 
 //Event Listeners
@@ -18,6 +22,7 @@ loginForm.addEventListener('submit', loginUser);
 signoutBTN.addEventListener('click', signOut);
 verifyBTN.addEventListener('click', EmailVerifcation);
 pfpBTN.addEventListener('click', uploadPfp);
+deletiona.addEventListener('click', deleteAccount)
 
 //User signed in?
 
@@ -41,6 +46,7 @@ auth.onAuthStateChanged(function (user) {
         let img = document.getElementById('profilePicture');
         img.style.display = 'none';
         contentAlertHTML.innerHTML = 'Please select a profile picture';
+        contentAlertHTML.style.display = 'block';
         contentAlertHTML.classList.add('animate');
         console.error('Error fetching profile picture:', error);
 
@@ -53,6 +59,8 @@ auth.onAuthStateChanged(function (user) {
     content.style.display = 'none';
   }
 });
+
+//Register
 
 function registerUser(e) {
   e.preventDefault();
@@ -122,6 +130,8 @@ function registerUser(e) {
     });
 }
 
+//Login
+
 function loginUser(e) {
   e.preventDefault();
   let loginEmail = document.getElementById('loginEmail').value;
@@ -180,6 +190,8 @@ function loginUser(e) {
     });
 }
 
+//Logout
+
 function signOut() {
   auth
     .signOut()
@@ -197,30 +209,38 @@ function signOut() {
     });
 }
 
+//Email Verification
+
 function EmailVerifcation() {
   let user = auth.currentUser;
   user
     .sendEmailVerification()
     .then(function () {
       contentAlertHTML.innerHTML = 'Please select a profile picture';
+      contentAlertHTML.style.display = 'grid';
       contentAlertHTML.classList.add('animate');
       registerForm.reset();
       loginForm.reset();
       setTimeout(function () {
         contentAlertHTML.classList.remove('animate');
+        contentAlertHTML.style.display = 'none';
       }, 3000);
     })
     .catch(function (error) {
       contentAlertHTML.innerHTML = 'Error sending email verification';
+      contentAlertHTML.style.display = 'grid';
       contentAlertHTML.classList.add('animate');
       registerForm.reset();
       loginForm.reset();
       setTimeout(function () {
         alert.classList.remove('animate');
+        contentAlertHTML.style.display = 'none';
       }, 3000);
       console.error(error);
     });
 }
+
+//Check if email is verified
 
 function checkEmailVerification() {
   let user = auth.currentUser;
@@ -230,6 +250,8 @@ function checkEmailVerification() {
   } else {
   }
 }
+
+//PFP Upload
 
 function uploadPfp() {
   let file = document.getElementById('fileUploader').files[0];
@@ -242,10 +264,12 @@ function uploadPfp() {
     .put(file)
     .then(function (snapshot) {
       contentAlertHTML.innerHTML = 'Profile picture uploaded successfully!';
+      contentAlertHTML.style.display = 'grid';
       contentAlertHTML.classList.add('animate');
 
       setTimeout(function () {
         contentAlertHTML.classList.remove('animate');
+        contentAlertHTML.style.display = 'none';
       }, 5000);
       return storageRef.getDownloadURL();
     })
@@ -255,6 +279,43 @@ function uploadPfp() {
       img.style.display = 'block';
     })
     .catch(function (error) {
+      contentAlertHTML.innerHTML = 'Error uploading profile picture';
+      contentAlertHTML.style.display = 'grid';
+      contentAlertHTML.classList.add('animate');
+
+      setTimeout(function () {
+        contentAlertHTML.classList.remove('animate');
+        contentAlertHTML.style.display = 'none';
+      }, 5000);
       console.error('Error uploading profile picture:', error);
+    });
+}
+
+//Account Deletion
+
+function deleteAccount() {
+  let user = auth.currentUser;
+  user
+    .delete()
+    .then(function () {
+      contentAlertHTML.innerHTML = 'Account deleted successfully';
+      contentAlertHTML.style.display = 'grid';
+      contentAlertHTML.classList.add('animate');
+
+      setTimeout(function () {
+        contentAlertHTML.classList.remove('animate');
+        contentAlertHTML.style.display = 'none';
+      }, 5000);
+    })
+    .catch(function (error) {
+      contentAlertHTML.innerHTML = 'Error deleting account';
+      contentAlertHTML.style.display = 'grid';
+      contentAlertHTML.classList.add('animate');
+
+      setTimeout(function () {
+        contentAlertHTML.classList.remove('animate');
+        contentAlertHTML.style.display = 'none';
+      }, 5000);
+      console.error('Error deleting account:', error);
     });
 }
