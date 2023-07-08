@@ -1,7 +1,5 @@
 import { auth, storage } from './db.js';
 
-auth.useDeviceLanguage();
-
 //Variables
 let authContainer = document.getElementsByClassName('auth')[0];
 let content = document.getElementsByClassName('content')[0];
@@ -13,7 +11,7 @@ let alertHTML = document.getElementById('alertHTML');
 let alert = document.getElementsByClassName('alert')[0];
 let contentAlertHTML = document.getElementById('contentAlertHTML');
 let pfpBTN = document.getElementById('fileSubmit');
-let deletiona = document.getElementById('deletiona');
+let deletionbtn = document.getElementById('deletionbtn');
 alert.style.width = authContainer.style.width;
 
 //Event Listeners
@@ -22,7 +20,7 @@ loginForm.addEventListener('submit', loginUser);
 signoutBTN.addEventListener('click', signOut);
 verifyBTN.addEventListener('click', EmailVerifcation);
 pfpBTN.addEventListener('click', uploadPfp);
-deletiona.addEventListener('click', deleteAccount)
+deletionbtn.addEventListener('click', deleteAccount);
 
 //User signed in?
 
@@ -30,6 +28,7 @@ auth.onAuthStateChanged(function (user) {
   if (user) {
     authContainer.style.display = 'none';
     content.style.display = 'grid';
+    alert.style.display = 'none'
     checkEmailVerification();
 
     let storageRef = storage
@@ -109,6 +108,7 @@ function registerUser(e) {
         alertHTML.style.fontSize = '1rem';
         alertHTML.style.color = 'black';
         alertHTML.style.textAlign = 'center';
+        alert.style.display = 'block';
         alert.classList.add('animate');
         registerForm.reset();
         loginForm.reset();
@@ -216,7 +216,7 @@ function EmailVerifcation() {
   user
     .sendEmailVerification()
     .then(function () {
-      contentAlertHTML.innerHTML = 'Please select a profile picture';
+      contentAlertHTML.innerHTML = 'Email Verifcation Sent';
       contentAlertHTML.style.display = 'grid';
       contentAlertHTML.classList.add('animate');
       registerForm.reset();
@@ -298,14 +298,9 @@ function deleteAccount() {
   user
     .delete()
     .then(function () {
-      contentAlertHTML.innerHTML = 'Account deleted successfully';
-      contentAlertHTML.style.display = 'grid';
-      contentAlertHTML.classList.add('animate');
-
       setTimeout(function () {
-        contentAlertHTML.classList.remove('animate');
-        contentAlertHTML.style.display = 'none';
-      }, 5000);
+        window.location.href = 'deletion.html';
+      }, 2000);
     })
     .catch(function (error) {
       contentAlertHTML.innerHTML = 'Error deleting account';

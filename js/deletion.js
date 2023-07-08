@@ -2,6 +2,7 @@ import { firestore } from './db.js';
 
 let form = document.getElementById('feedback');
 let firestoreRef = firestore.collection('feedback');
+let deleteAlertHTML = document.getElementById('deleteAlertHTML');
 
 form.addEventListener('submit', submission);
 
@@ -26,12 +27,23 @@ function submission(e) {
       data,
     })
     .then(() => {
+      deleteAlertHTML.innerHTML =
+        'Feedback saved! Automatically redirecting back';
+      deleteAlertHTML.classList.add('animate');
+      setTimeout(function () {
+        deleteAlertHTML.classList.remove('animate');
+        window.location.href = 'index.html';
+      }, 3000);
+
       console.log('Data added successfully');
+      form.reset();
     })
     .catch((error) => {
-      console.error(error);
-      console.log('Error adding data');
+      deleteAlertHTML.innerHTML = 'An error has occured! Please try again';
+      deleteAlertHTML.classList.add('animate');
+      setTimeout(function () {
+        deleteAlertHTML.classList.remove('animate');
+      }, 3000);
+      console.error('Error adding data', error);
     });
-
-  form.reset();
 }
